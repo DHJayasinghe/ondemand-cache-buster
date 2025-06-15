@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[ServiceRegistry](
 	[IP] [varchar](100) NOT NULL,
 	[Region] [varchar](100) NULL,
 	[RegisteredDateTime] [datetime2](7) NOT NULL,
-	[LastActiveDateTime] [datetime2](7) NULL,
+	[LastActiveDateTime] [datetime2](7) NOT NULL,
  CONSTRAINT [PK_ServiceRegistry] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

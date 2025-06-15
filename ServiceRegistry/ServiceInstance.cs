@@ -9,5 +9,5 @@ public class ServiceInstance
     public string IP { get; set; }
     public string? Region { get; set; }
     public DateTime RegisteredDateTime { get; set; } = DateTime.UtcNow;
-    public DateTime? LastActiveDateTime { get; set; }
+    public DateTime? LastActiveDateTime { get; set; } = DateTime.UtcNow;
 }
