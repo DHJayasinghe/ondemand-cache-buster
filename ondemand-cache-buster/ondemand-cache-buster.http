@@ -1,0 +1,6 @@
+@ondemand_cache_buster_HostAddress = http://localhost:5291
+
+GET {{ondemand_cache_buster_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
