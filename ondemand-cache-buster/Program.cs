@@ -7,13 +7,15 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
-services.AddServiceRegistry(builder.Configuration.GetConnectionString("SQLServer"), healthCheckEnabled: true);
+services.AddServiceRegistry(
+    connectionString: builder.Configuration.GetConnectionString("SQLServer"),
+    new ServiceHeartbeatConfig { Enabled = true, Interval = TimeSpan.FromSeconds(10) });
 
 var app = builder.Build();
 
-app.UseServiceRegistry(app.Services, new ServiceInstance
+app.UseServiceRegistry(app.Services, new ServiceInstanceConfig
 {
-    AppName = "ondemand-cache-buster",
+    AppName = Environment.GetEnvironmentVariable("AppName"),
     Port = int.Parse(Environment.GetEnvironmentVariable("ASPNETCORE_HTTP_PORTS") ?? "8080"),
     HostName = Environment.GetEnvironmentVariable("HOSTNAME") ?? "NA",
     Region = Environment.GetEnvironmentVariable("RegionCode") ?? "NA",

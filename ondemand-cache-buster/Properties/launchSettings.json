@@ -29,7 +29,8 @@
         "HOSTNAME": "cache-buster-pod-156489",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HTTP_PORTS": "5291",
-        "RegionCode": "North"
+        "RegionCode": "North",
+        "AppName": "ondemand-cache-buster"
       }
     }
   }

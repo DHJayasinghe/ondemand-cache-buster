@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace ServiceRegistry;
 
-public class ServiceHeartbeat(IServiceProvider serviceProvider, ILogger<ServiceHeartbeat> logger) : BackgroundService
+public class ServiceHeartbeat(IServiceProvider serviceProvider, ILogger<ServiceHeartbeat> logger, ServiceHeartbeatConfig heartbeatConfig) : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
     private readonly ILogger<ServiceHeartbeat> _logger = logger;
-    private readonly TimeSpan _heartbeatInterval = TimeSpan.FromSeconds(10); 
+    private readonly TimeSpan _heartbeatInterval = heartbeatConfig.Interval; 
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -20,7 +20,7 @@ public class ServiceHeartbeat(IServiceProvider serviceProvider, ILogger<ServiceH
             try
             {
                 using var scope = _serviceProvider.CreateScope();
-                var repository = scope.ServiceProvider.GetRequiredService<ServiceRegistryRepository>();
+                var repository = scope.ServiceProvider.GetRequiredService<ServiceRegistryService>();
 
                 repository.UpdateLastActiveDateTimeAsync(instanceId).GetAwaiter().GetResult();
             }

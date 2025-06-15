@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace ServiceRegistry;
 
-public class ServiceRegistryRepository(string connectionString)
+public class ServiceRegistryService(string connectionString)
 {
     private readonly string _connectionString = connectionString;
 
